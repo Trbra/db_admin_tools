@@ -1,0 +1,26 @@
+[2025-09-07 21:29:18.825417] Connected to postgres
+
+--- Top 5 slowest queries ---
+('SELECT description, classoid, objoid, objsubid FROM pg_catalog.pg_description ORDER BY classoid, objoid, objsubid', 1, Decimal('170.43'))
+('SELECT tableoid, oid, typname, typnamespace, typacl, acldefault($1, typowner) AS acldefault, typowner, typelem, typrelid, CASE WHEN typrelid = $2 THEN $3::"char" ELSE (SELECT relkind FROM pg_class WHERE oid = typrelid) END AS typrelkind, typtype, typisdefined, typname[$4] = $5 AND typelem != $6 AND (SELECT typarray FROM pg_type te WHERE oid = pg_type.typelem) = oid AS isarray FROM pg_type', 1, Decimal('35.06'))
+('SELECT tableoid, oid, collname, collnamespace, collowner, collencoding FROM pg_collation', 1, Decimal('33.15'))
+('SELECT relname AS table_name,\n               pg_size_pretty(pg_total_relation_size(relid)) AS total_size\n        FROM pg_catalog.pg_statio_user_tables\n        ORDER BY pg_total_relation_size(relid) DESC\n        LIMIT $1', 1, Decimal('9.50'))
+('SELECT p.tableoid, p.oid, p.proname, p.prolang, p.pronargs, p.proargtypes, p.prorettype, p.proacl, acldefault($1, p.proowner) AS acldefault, p.pronamespace, p.proowner FROM pg_proc p LEFT JOIN pg_init_privs pip ON (p.oid = pip.objoid AND pip.classoid = $2::regclass AND pip.objsubid = $3) WHERE p.prokind <> $4\n  AND NOT EXISTS (SELECT $5 FROM pg_depend WHERE classid = $6::regclass AND objid = p.oid AND deptype = $7)\n  AND (\n  pronamespace != (SELECT oid FROM pg_namespace WHERE nspname = $8)\n  OR EXISTS (SELECT $9 FROM pg_cast\n  WHERE pg_cast.oid > $10 \n  AND p.oid = pg_cast.castfunc)\n  OR EXISTS (SELECT $11 FROM pg_transform\n  WHERE pg_transform.oid > $12 AND \n  (p.oid = pg_transform.trffromsql\n  OR p.oid = pg_transform.trftosql))\n  OR p.proacl IS DISTINCT FROM pip.initprivs)', 1, Decimal('9.18'))
+
+--- Largest tables (by size) ---
+('companies', '80 kB')
+('fundamentals', '56 kB')
+
+--- Index usage efficiency ---
+('fundamentals', 0, 9, Decimal('0.00'))
+('companies', 200, 10, Decimal('95.00'))
+
+--- Potential table bloat ---
+
+--- Active connections ---
+(5, None)
+(1, 'active')
+(3, 'idle')
+
+--- Deadlocks detected ---
+[2025-09-07 21:29:19.074090] Performance check completed. Results saved to logs\performance_check_2025-09-07_21-29.log

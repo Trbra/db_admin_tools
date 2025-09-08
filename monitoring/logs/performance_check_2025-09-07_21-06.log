@@ -1,0 +1,21 @@
+[2025-09-07 21:06:32.936896] Connected to postgres
+[ERROR] Top 5 slowest queries failed: pg_stat_statements must be loaded via "shared_preload_libraries"
+
+
+--- Largest tables (by size) ---
+('companies', '80 kB')
+('fundamentals', '56 kB')
+
+--- Index usage efficiency ---
+('fundamentals', 0, 7, Decimal('0.00'))
+('companies', 200, 9, Decimal('95.00'))
+
+--- Potential table bloat ---
+
+--- Active connections ---
+(5, None)
+(1, 'active')
+(2, 'idle')
+
+--- Deadlocks detected ---
+[2025-09-07 21:06:33.098198] Performance check completed. Results saved to logs\performance_check_2025-09-07_21-06.log

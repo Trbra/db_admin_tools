@@ -1,0 +1,17 @@
+[2025-09-07 20:55:45.802482] Connected to postgres
+[ERROR] Top 5 slowest queries failed: function round(double precision, integer) does not exist
+LINE 2:         SELECT query, calls, ROUND(total_exec_time/calls,2) ...
+                                     ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[ERROR] Largest tables (by size) failed: current transaction is aborted, commands ignored until end of transaction block
+
+[ERROR] Index usage efficiency failed: current transaction is aborted, commands ignored until end of transaction block
+
+[ERROR] Potential table bloat failed: current transaction is aborted, commands ignored until end of transaction block
+
+[ERROR] Active connections failed: current transaction is aborted, commands ignored until end of transaction block
+
+[ERROR] Deadlocks detected failed: current transaction is aborted, commands ignored until end of transaction block
+
+[2025-09-07 20:55:46.040983] Performance check completed. Results saved to logs\performance_check_2025-09-07_20-55.log
